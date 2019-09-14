@@ -19,10 +19,8 @@ module.exports = service;
 
 function authenticate(username, password) {
     var deferred = Q.defer();
-
     db.users.findOne({ username: username }, function (err, user) {
         if (err) deferred.reject(err.name + ': ' + err.message);
-
         if (user && bcrypt.compareSync(password, user.hash)) {
             // authentication successful
             deferred.resolve({token :jwt.sign({ sub: user._id }, config.secret), userId: user._id});

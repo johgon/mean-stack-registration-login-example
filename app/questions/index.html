@@ -1,0 +1,67 @@
+﻿
+<style>
+.text-caption {
+    font-size: 13px;
+    color: #757575;
+}
+.text-simple {
+    font-size: 14px;
+    color: #000000;
+}
+.padding-left-39 {
+    padding-left: 39px;
+}
+
+.padding-bottom-5 {
+    padding-bottom: 5px;
+}
+
+</style>
+
+<h1>Perguntas</h1>
+<div class="form-container" ng-init="initController();">
+  <div class="row padding-left-39">
+    <div class="col-sm-5">
+        <input type="text" placeholder="Pergunta" ng-model="vm.pergunta.Question">
+    </div>
+    <div class="col-sm-5">
+        <input type="text" placeholder="Resposta" ng-model="vm.pergunta.Answer">
+    </div>
+    <div class="col-sm-2">
+        <button type="submit" class="btn btn-primary" ng-click="vm.saveQuestion()">ADD +</button>
+    </div>
+  </div>
+  </hr>
+  <div class="row">
+    <div class ="col-sm-12" ng-if="vm.lista.length>0">
+        <ul style="list-style: none">
+            <li>
+                <div class="row text-caption">
+                    <div class ="col-sm-5">
+                        <label>Pergunta</label>
+                    </div>
+                    <div class ="col-sm-5">
+                        <label>Resposta</label>
+                    </div>
+                </div>
+            </li>
+            <li ng-repeat="per in vm.lista" >
+                <div class="row text-simple padding-bottom-5" >
+                    <div class="col-sm-5" ng-disabled="!per.edit">
+                        <input type="text"ng-model="per.Question">
+                    </div>
+                    <div class="col-sm-5" ng-disabled="!per.edit">
+                        <input type="text" ng-model="per.Answer">                   
+                    </div>
+                    <div class="col-sm-1">
+                        <button type="submit" class="btn btn-primary" ng-click="vm.updateQuestion(per)">edit</button>
+                    </div> 
+                    <div class="col-sm-1">
+                         <button type="submit" class="btn btn-primary" ng-click="vm.deleteQuestion(per)">Delete</button>
+                    </div> 
+                </div>
+            </li>
+        </ul>
+    </div>
+  </div>
+</div>
